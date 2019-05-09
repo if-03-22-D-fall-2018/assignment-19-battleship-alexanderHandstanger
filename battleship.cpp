@@ -50,13 +50,17 @@ bool shoot(int row, int col){
     FillWaterAround(row, col);
     return true;
   }
+  else if(opContent[row][col] == Water){
+    guesses[row][col] = Water;
+    return true;
+  }
   return false;
 }
 
 void FillWaterAround(int row, int col){
   for (int i = -1; i <= 1; i++) {
     for (int j = -1; j <= 1; j++) {
-      if((row-i > 0 && row-i < FIELDSIZE) && (col-j > 0 && col-j < FIELDSIZE)){
+      if((row-i >= 0 && row-i < FIELDSIZE) && (col-j >= 0 && col-j < FIELDSIZE)){
           guesses[row-i][col-j] = Water;
       }
     }
@@ -65,5 +69,8 @@ void FillWaterAround(int row, int col){
 }
 
 CellContent get_my_guess(int row, int col){
+  if(row < 0 || row > FIELDSIZE-1 || col < 0 || col > FIELDSIZE-1){
+    return OutOfRange;
+  }
   return guesses[row][col];
 }
