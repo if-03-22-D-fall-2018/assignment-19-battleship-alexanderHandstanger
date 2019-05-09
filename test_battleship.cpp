@@ -10,6 +10,7 @@
  * Unit tests for battleship
  *-----------------------------------------------------------------------------
 */
+#include <stdio.h>
 #include "battleship.h"
 
 #include "test_file_setup.h"
